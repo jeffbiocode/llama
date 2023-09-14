@@ -13,17 +13,16 @@ if __name__ == "__main__":
         max_batch_size=6
     )
     # Collect user input for system and user roles
-    system_input = input("Enter system message (or type 'exit' to quit): ")
+    system_input = input("Enter system message:")
     while True:        
-        # Check for the exit condition
-        if system_input.lower() == "exit":
-            break
-
-        user_input = input("Enter user message (or type 'exit' to quit): ")
+        user_input = input("Enter user message (or type 'exit' to quit or 'system' to enter new system message): ")
 
         # Check for the exit condition
         if user_input.lower() == "exit":
             break
+        if user_input.lower() == "system":
+            system_input = input("Enter system message:")
+            user_input = input("Enter user message:")
 
         # Wrap the input in a dialog format
         dialog = [
@@ -42,5 +41,5 @@ if __name__ == "__main__":
         # Print the results to the screen
         for msg in dialog:
             print(f"{msg['role'].capitalize()}: {msg['content']}\n")
-        print(f"> Assistant: {results[0]['generation']['content']}\n")
+        print(f"{results[0]['generation']['content']}\n")
         print("\n==================================\n")
